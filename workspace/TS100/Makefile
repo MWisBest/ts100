@@ -110,8 +110,10 @@ CHECKOPTIONS=		-Wall 				\
 			-Wmissing-field-initializers	\
 			-Winline			\
 			-Wshadow			\
-			-Wno-unused-parameter \
-			-Wdouble-promotion
+			-Wno-unused-parameter	\
+			-Wdouble-promotion	\
+			-Wstrict-aliasing=3 \
+			-Werror=strict-aliasing
 
 
 CHECKOPTIONS_C=		-Wbad-function-cast
@@ -132,7 +134,7 @@ CXXFLAGS=$(CPUFLAGS) \
 		-fno-exceptions 	\
 		-fno-non-call-exceptions \
 		-fno-use-cxa-atexit		\
-		-fno-strict-aliasing 		\
+		-fstrict-aliasing 		\
 		-fno-rtti 			\
 		-fno-exceptions		\
 		-fno-threadsafe-statics \
@@ -143,6 +145,7 @@ CFLAGS=$(CPUFLAGS) \
 		$(DEBUG) 			\
 		$(INCLUDES) 			\
 		$(CHECKOPTIONS_C) 		\
+		$(CHECKOPTIONS) 		\
 		$(GLOBAL_DEFINES) 		\
 		-D${COMPILER}  			\
 		-MMD 				\
@@ -151,9 +154,10 @@ CFLAGS=$(CPUFLAGS) \
 		-fno-common			\
 		-ffreestanding			\
 		-T$(LDSCRIPT)			\
-		-c
-		
-		
+		-c	\
+		-fstrict-aliasing
+
+
 AFLAGS=$(CPUFLAGS) \
 		$(DEBUG) 			\
 		$(INCLUDES)
