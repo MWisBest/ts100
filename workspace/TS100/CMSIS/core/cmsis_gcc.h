@@ -43,6 +43,13 @@
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #endif
 
+/* lame hack for FreeRTOS directly including this file */
+#if !defined(__CORTEX_M) && !defined(__CORTEX_SC)
+#ifdef TS100
+#define __CORTEX_M                (0x03U)
+#endif
+#endif
+
 
 /* ###########################  Core Function Access  ########################### */
 /** \ingroup  CMSIS_Core_FunctionInterface
